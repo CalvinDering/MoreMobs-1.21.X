@@ -1,4 +1,4 @@
-package de.bl4ckl1on.moremobs;
+package de.bl4ckl1on.moremobsmod;
 
 import org.slf4j.Logger;
 
