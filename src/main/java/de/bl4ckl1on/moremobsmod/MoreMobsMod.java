@@ -1,5 +1,6 @@
 package de.bl4ckl1on.moremobsmod;
 
+import de.bl4ckl1on.moremobsmod.block.ModBlocks;
 import de.bl4ckl1on.moremobsmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ public class MoreMobsMod {
         NeoForge.EVENT_BUS.register(this);
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
