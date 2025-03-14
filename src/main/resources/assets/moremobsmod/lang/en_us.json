@@ -1,3 +1,6 @@
 {
-  "item.moremobsmod.banana": "Banana"
+  "item.moremobsmod.banana": "Banana",
+  "item.moremobsmod.monkey_spawn_egg": "Monkey Spawn Egg",
+
+  "entity.moremobsmod.monkey": "Monkey"
 }
