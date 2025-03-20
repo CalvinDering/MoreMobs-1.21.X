@@ -2,6 +2,7 @@ package de.bl4ckl1on.moremobsmod;
 
 import de.bl4ckl1on.moremobsmod.block.ModBlocks;
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
+import de.bl4ckl1on.moremobsmod.entity.client.CrocodileRenderer;
 import de.bl4ckl1on.moremobsmod.entity.client.MonkeyRenderer;
 import de.bl4ckl1on.moremobsmod.item.ModItems;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -61,10 +62,10 @@ public class MoreMobsMod {
 
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
             event.accept(ModItems.BANANA);
-            event.accept(ModItems.MONKEY_SPAWN_EGG);
         }
 
         if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
+            event.accept(ModItems.CROCODILE_SPAWN_EGG);
             event.accept(ModItems.MONKEY_SPAWN_EGG);
         }
 
@@ -82,6 +83,7 @@ public class MoreMobsMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+            EntityRenderers.register(ModEntities.CROCODILE.get(), CrocodileRenderer::new);
             EntityRenderers.register(ModEntities.MONKEY.get(), MonkeyRenderer::new);
 
         }

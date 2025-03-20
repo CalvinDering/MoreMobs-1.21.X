@@ -15,6 +15,8 @@ public class ModItems {
     public static final DeferredItem<Item> BANANA = ITEMS.register("banana",
             () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> CROCODILE_SPAWN_EGG = ITEMS.register("crocodile_spawn_egg",
+            () -> new DeferredSpawnEggItem(ModEntities.CROCODILE, 0x484a30, 0x757d55, new Item.Properties()));
     public static final DeferredItem<Item> MONKEY_SPAWN_EGG = ITEMS.register("monkey_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.MONKEY, 0x020403, 0x272c3a, new Item.Properties()));
 
