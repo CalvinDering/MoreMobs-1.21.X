@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:beach",
+  "spawners": {
+    "type": "moremobsmod:crocodile",
+    "maxCount": 4,
+    "minCount": 2,
+    "weight": 5
+  }
+}

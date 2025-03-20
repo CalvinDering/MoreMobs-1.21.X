@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "minecraft:jungle",
+    "minecraft:sparse_jungle",
+    "minecraft:savanna_plateau"
+  ],
+  "spawners": {
+    "type": "moremobsmod:monkey",
+    "maxCount": 4,
+    "minCount": 2,
+    "weight": 20
+  }
+}
