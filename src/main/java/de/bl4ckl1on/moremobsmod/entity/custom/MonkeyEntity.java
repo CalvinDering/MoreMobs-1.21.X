@@ -10,12 +10,15 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
@@ -56,6 +59,11 @@ public class MonkeyEntity extends Animal {
                 .add(Attributes.MAX_HEALTH, 10d)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D)
                 .add(Attributes.FOLLOW_RANGE, 24D);
+    }
+
+    @Override
+    protected PathNavigation createNavigation(Level level) {
+        return new WallClimberNavigation(this, level);
     }
 
     @Override
@@ -111,8 +119,8 @@ public class MonkeyEntity extends Animal {
     static class ClimbTreeGoal extends Goal {
 
         private final MonkeyEntity monkeyEntity;
-        private BlockPos targetTreePos;
         private boolean climbing;
+        private BlockPos targetTreePos;
 
         public ClimbTreeGoal(MonkeyEntity monkeyEntity) {
             this.monkeyEntity = monkeyEntity;
@@ -121,57 +129,71 @@ public class MonkeyEntity extends Animal {
 
         @Override
         public boolean canUse() {
+            if(climbing) {
+                return false;
+            }
+
             this.targetTreePos = findNearestTree(10);
-            return this.targetTreePos != null && monkeyEntity.isClimbableBlock(this.targetTreePos);
+            return targetTreePos != null && monkeyEntity.isClimbableBlock(this.targetTreePos);
         }
 
         @Override
         public void start() {
-
             if(this.targetTreePos != null) {
                 this.monkeyEntity.getNavigation().moveTo(
                         this.targetTreePos.getX() + 0.5,
                         this.targetTreePos.getY(),
                         this.targetTreePos.getZ() + 0.5,
                         1.2);
-                this.climbing = false;
             }
-
-            /*
-            if(this.climbableBlockPos != null) {
-                double dx = this.climbableBlockPos.getX() + 0.5 - this.monkeyEntity.getX();
-                double dz = this.climbableBlockPos.getZ() + 0.5 - this.monkeyEntity.getZ();
-                float targetYaw = (float) (Math.atan2(dz, dx) * (180 / Math.PI)) - 90;
-                this.monkeyEntity.setYRot(targetYaw);
-                this.monkeyEntity.yHeadRot = targetYaw;
-                this.monkeyEntity.yBodyRot = targetYaw;
-
-                this.monkeyEntity.setDeltaMovement(new Vec3(0, climbingSpeed, 0));
-            }*/
         }
 
         @Override
         public void tick() {
-            if(!climbing) {
-                if(this.monkeyEntity.blockPosition().closerThan(this.targetTreePos, 1.5)) {
-                    climbing = true;
-                    startClimbing();
+            BlockPos facingBlockPos = monkeyEntity.getFacingBlockPos();
+
+            if(!climbing && facingBlockPos.equals(targetTreePos)) {
+                climbing = true;
+            }
+
+            if(climbing) {
+                BlockPos aboveBlockPos = facingBlockPos.above();
+                if(!monkeyEntity.isClimbableBlock(aboveBlockPos)) {
+                    stopClimbing();
+                } else {
+                    this.monkeyEntity.setDeltaMovement(new Vec3(0, climbingSpeed, 0));
                 }
-            } else {
+            }
+            /*
+            if(!climbing && this.monkeyEntity.blockPosition().closerThan(this.targetTreePos, 1.5)) {
+                climbing = true;
+                startClimbing();
+            } else if(climbing) {
                 BlockPos aboveBlockPos = this.targetTreePos.above();
                 if(!monkeyEntity.isClimbableBlock(aboveBlockPos)) {
-                    this.monkeyEntity.setDeltaMovement(Vec3.ZERO);
-                    climbing = false;
+                    stopClimbing();
+                } else {
+                    this.monkeyEntity.setDeltaMovement(new Vec3(0, climbingSpeed, 0));
                 }
-
-                Vec3 forward = Vec3.directionFromRotation(0, this.monkeyEntity.getYRot()).scale(0);
-                this.monkeyEntity.setDeltaMovement(new Vec3(forward.x, climbingSpeed, forward.z));
+            } else if(climbingDown) {
+                BlockPos belowBlockPos = this.monkeyEntity.blockPosition().below();
+                if(monkeyEntity.isClimbableBlock(belowBlockPos)) {
+                    this.monkeyEntity.setDeltaMovement(new Vec3(0, -climbingSpeed, 0));
+                } else {
+                    stopClimbingDown();
+                }
             }
+            */
         }
 
         @Override
         public boolean canContinueToUse() {
-            return climbing && monkeyEntity.isClimbableBlock(this.targetTreePos.above());
+            return climbing && monkeyEntity.isClimbableBlock(monkeyEntity.getFacingBlockPos().above());
+        }
+
+        private void stopClimbing() {
+            climbing = false;
+            this.monkeyEntity.setDeltaMovement(Vec3.ZERO);
         }
 
         private void startClimbing() {
