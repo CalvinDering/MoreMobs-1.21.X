@@ -45,9 +45,9 @@ public class MonkeyEntity extends Animal {
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, stack -> stack.is(ModItems.BANANA), false));
 
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
-        this.goalSelector.addGoal(4, new ClimbTreeGoal(this));
         this.goalSelector.addGoal(4, new MoveThroughVillageGoal(this, 1.0, false, 10, () -> true));
         this.goalSelector.addGoal(5, new OpenDoorGoal(this, false));
+        this.goalSelector.addGoal(6, new ClimbTreeGoal(this));
 
         this.goalSelector.addGoal(7, new RandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -164,26 +164,6 @@ public class MonkeyEntity extends Animal {
                     this.monkeyEntity.setDeltaMovement(new Vec3(0, climbingSpeed, 0));
                 }
             }
-            /*
-            if(!climbing && this.monkeyEntity.blockPosition().closerThan(this.targetTreePos, 1.5)) {
-                climbing = true;
-                startClimbing();
-            } else if(climbing) {
-                BlockPos aboveBlockPos = this.targetTreePos.above();
-                if(!monkeyEntity.isClimbableBlock(aboveBlockPos)) {
-                    stopClimbing();
-                } else {
-                    this.monkeyEntity.setDeltaMovement(new Vec3(0, climbingSpeed, 0));
-                }
-            } else if(climbingDown) {
-                BlockPos belowBlockPos = this.monkeyEntity.blockPosition().below();
-                if(monkeyEntity.isClimbableBlock(belowBlockPos)) {
-                    this.monkeyEntity.setDeltaMovement(new Vec3(0, -climbingSpeed, 0));
-                } else {
-                    stopClimbingDown();
-                }
-            }
-            */
         }
 
         @Override
