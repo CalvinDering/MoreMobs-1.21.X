@@ -15,6 +15,7 @@ public class CrocodileEntity extends Monster {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private final int idleAnimationInTicks = 20 * 3;
 
     public CrocodileEntity(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -43,7 +44,7 @@ public class CrocodileEntity extends Monster {
 
     private void setupAnimationStates() {
         if(this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 80;
+            this.idleAnimationTimeout = idleAnimationInTicks;
             this.idleAnimationState.start(this.tickCount);
         } else {
             --this.idleAnimationTimeout;

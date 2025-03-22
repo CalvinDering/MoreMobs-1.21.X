@@ -31,6 +31,7 @@ public class MonkeyEntity extends Animal {
 
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private final int idleAnimationInTicks = 20 * 4;
 
     public MonkeyEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -100,7 +101,7 @@ public class MonkeyEntity extends Animal {
 
     private void setupAnimationStates() {
         if(this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = 80;
+            this.idleAnimationTimeout = idleAnimationInTicks;
             this.idleAnimationState.start(this.tickCount);
         } else {
             --this.idleAnimationTimeout;
