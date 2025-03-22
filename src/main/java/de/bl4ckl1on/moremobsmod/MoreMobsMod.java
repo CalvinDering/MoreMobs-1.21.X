@@ -5,6 +5,7 @@ import de.bl4ckl1on.moremobsmod.entity.ModEntities;
 import de.bl4ckl1on.moremobsmod.entity.client.CrocodileRenderer;
 import de.bl4ckl1on.moremobsmod.entity.client.MonkeyRenderer;
 import de.bl4ckl1on.moremobsmod.item.ModItems;
+import de.bl4ckl1on.moremobsmod.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
@@ -45,6 +46,7 @@ public class MoreMobsMod {
         ModBlocks.register(modEventBus);
 
         ModEntities.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

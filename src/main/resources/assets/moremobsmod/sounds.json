@@ -1,0 +1,21 @@
+{
+  "monkey_ambient": {
+    "subtitle": "sounds.moremobsmod.monkey_ambient",
+    "sounds": [
+      "moremobsmod:monkey_ambient1",
+      "moremobsmod:monkey_ambient2"
+    ]
+  },
+  "monkey_hurt": {
+    "subtitle": "sounds.moremobsmod.monkey_hurt",
+    "sounds": [
+      "moremobsmod:monkey_hurt"
+    ]
+  },
+  "monkey_death": {
+    "subtitle": "sounds.moremobsmod.monkey_death",
+    "sounds": [
+      "moremobsmod:monkey_death"
+    ]
+  }
+}

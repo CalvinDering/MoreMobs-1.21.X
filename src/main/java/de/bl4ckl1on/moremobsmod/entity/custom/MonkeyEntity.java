@@ -2,9 +2,13 @@ package de.bl4ckl1on.moremobsmod.entity.custom;
 
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
 import de.bl4ckl1on.moremobsmod.item.ModItems;
+import de.bl4ckl1on.moremobsmod.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -209,4 +213,21 @@ public class MonkeyEntity extends Animal {
         }
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.MONKEY_AMBIENT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.MONKEY_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.MONKEY_DEATH.get();
+    }
 }
