@@ -1,8 +1,11 @@
 package de.bl4ckl1on.moremobsmod.item;
 
 import de.bl4ckl1on.moremobsmod.MoreMobsMod;
+import de.bl4ckl1on.moremobsmod.block.ModBlocks;
+import de.bl4ckl1on.moremobsmod.block.custom.BananaBlock;
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -13,7 +16,7 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MoreMobsMod.MOD_ID);
 
     public static final DeferredItem<Item> BANANA = ITEMS.register("banana",
-            () -> new Item(new Item.Properties()));
+            () -> new ItemNameBlockItem(ModBlocks.BANANA_BLOCK.get(), new Item.Properties()));
 
     public static final DeferredItem<Item> CROCODILE_SPAWN_EGG = ITEMS.register("crocodile_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.CROCODILE, 0x484a30, 0x757d55, new Item.Properties()));

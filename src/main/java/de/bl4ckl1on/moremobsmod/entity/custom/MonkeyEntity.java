@@ -26,6 +26,8 @@ import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
+import java.util.List;
+import java.util.UUID;
 
 public class MonkeyEntity extends Animal {
 
@@ -37,6 +39,8 @@ public class MonkeyEntity extends Animal {
     private int idleAnimationTimeout = 0;
     private final int idleAnimationInTicks = 20 * 4;
 
+    private UUID motherEntityUUID;
+
     public MonkeyEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
         ((GroundPathNavigation) this.getNavigation()).setCanOpenDoors(true);
@@ -45,6 +49,10 @@ public class MonkeyEntity extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
+
+        if (this.isBaby()) {
+            this.goalSelector.addGoal(1, new ClingToMotherGoal(this));
+        }
 
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.0));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, stack -> stack.is(ModItems.BANANA), false));
@@ -84,7 +92,16 @@ public class MonkeyEntity extends Animal {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-        return ModEntities.MONKEY.get().create(level);
+        MonkeyEntity babyMonkey = ModEntities.MONKEY.get().create(level);
+        if(babyMonkey != null && otherParent instanceof MonkeyEntity) {
+            babyMonkey.setMother((MonkeyEntity) otherParent);
+        }
+
+        return babyMonkey;
+    }
+
+    private void setMother(MonkeyEntity mother) {
+        this.motherEntityUUID = mother.getUUID();
     }
 
     @Override
@@ -211,6 +228,81 @@ public class MonkeyEntity extends Animal {
             }
             return bestPos;
         }
+    }
+
+    public class ClingToMotherGoal extends Goal {
+        private final MonkeyEntity baby;
+        private MonkeyEntity mother;
+        private boolean isClinging;
+
+        public ClingToMotherGoal(MonkeyEntity baby) {
+            this.baby = baby;
+        }
+
+        @Override
+        public boolean canUse() {
+            if(!this.baby.isBaby() ||this.baby.isLeashed() || this.baby.getMotherUUID() == null) {
+                return false;
+            }
+
+            if(this.mother == null || !this.mother.isAlive()) {
+                this.mother = findMother();
+            }
+
+            return this.mother != null;
+        }
+
+        @Override
+        public boolean isInterruptable() {
+            return !this.isClinging;
+        }
+
+        @Override
+        public void start() {
+            this.isClinging = false;
+        }
+
+        @Override
+        public void tick() {
+            if(!this.isClinging && this.mother != null) {
+                if(this.baby.getBoundingBox().intersects(this.mother.getBoundingBox())) {
+                    this.isClinging = true;
+                    this.attachToMother();
+                }
+            }
+
+            if(this.isClinging) {
+                this.holdPosition();
+            }
+        }
+
+        private MonkeyEntity findMother() {
+            return this.baby.level().getEntitiesOfClass(MonkeyEntity.class,
+                    this.baby.getBoundingBox().inflate(10.0),
+                    monkey -> monkey.getUUID().equals(this.baby.getMotherUUID()))
+                    .stream().findFirst().orElse(null);
+        }
+
+        private void attachToMother() {
+            this.baby.setNoGravity(true);
+        }
+
+        private void holdPosition() {
+            if(this.mother == null || !this.mother.isAlive()) {
+                this.baby.setNoGravity(false);
+                this.isClinging = false;
+                return;
+            }
+
+            Vec3 motherPos = this.mother.position();
+            Vec3 offset = new Vec3(0, -0.5, 0.3);
+            this.baby.setPos(motherPos.add(offset));
+            this.baby.setDeltaMovement(Vec3.ZERO);
+        }
+    }
+
+    public UUID getMotherUUID() {
+        return this.motherEntityUUID;
     }
 
     @Nullable
