@@ -2,7 +2,17 @@
   "item.moremobsmod.banana": "Banana",
   "item.moremobsmod.crocodile_spawn_egg": "Crocodile Spawn Egg",
   "item.moremobsmod.monkey_spawn_egg": "Monkey Spawn Egg",
+  "item.moremobsmod.flamingo_spawn_egg": "Flamingo Spawn Egg",
+  "item.moremobsmod.giraffe_spawn_egg": "Giraffe Spawn Egg",
+  "item.moremobsmod.kangaroo_spawn_egg": "Kangaroo Spawn Egg",
+  "item.moremobsmod.penguin_spawn_egg": "Penguin Spawn Egg",
+  "item.moremobsmod.ender_serpent_spawn_egg": "Ender Serpent Spawn Egg",
 
   "entity.moremobsmod.crocodile": "Crocodile",
-  "entity.moremobsmod.monkey": "Monkey"
+  "entity.moremobsmod.monkey": "Monkey",
+  "entity.moremobsmod.flamingo": "Monkey",
+  "entity.moremobsmod.giraffe": "Monkey",
+  "entity.moremobsmod.kangaroo": "Monkey",
+  "entity.moremobsmod.penguin": "Monkey",
+  "entity.moremobsmod.ender_serpent": "Monkey"
 }

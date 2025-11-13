@@ -2,8 +2,7 @@ package de.bl4ckl1on.moremobsmod;
 
 import de.bl4ckl1on.moremobsmod.block.ModBlocks;
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
-import de.bl4ckl1on.moremobsmod.entity.client.CrocodileRenderer;
-import de.bl4ckl1on.moremobsmod.entity.client.MonkeyRenderer;
+import de.bl4ckl1on.moremobsmod.entity.client.*;
 import de.bl4ckl1on.moremobsmod.item.ModItems;
 import de.bl4ckl1on.moremobsmod.sound.ModSounds;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -69,6 +68,11 @@ public class MoreMobsMod {
         if(event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(ModItems.CROCODILE_SPAWN_EGG);
             event.accept(ModItems.MONKEY_SPAWN_EGG);
+            event.accept(ModItems.FLAMINGO_SPAWN_EGG);
+            event.accept(ModItems.GIRAFFE_SPAWN_EGG);
+            event.accept(ModItems.KANGAROO_SPAWN_EGG);
+            event.accept(ModItems.PENGUIN_SPAWN_EGG);
+            event.accept(ModItems.ENDER_SERPENT_SPAWN_EGG);
         }
 
     }
@@ -87,6 +91,11 @@ public class MoreMobsMod {
 
             EntityRenderers.register(ModEntities.CROCODILE.get(), CrocodileRenderer::new);
             EntityRenderers.register(ModEntities.MONKEY.get(), MonkeyRenderer::new);
+            EntityRenderers.register(ModEntities.FLAMINGO.get(), FlamingoRenderer::new);
+            EntityRenderers.register(ModEntities.KANGAROO.get(), KangarooRenderer::new);
+            EntityRenderers.register(ModEntities.GIRAFFE.get(), GiraffeRenderer::new);
+            EntityRenderers.register(ModEntities.PENGUIN.get(), PenguinRenderer::new);
+            EntityRenderers.register(ModEntities.ENDER_SERPENT.get(), EnderSerpentRenderer::new);
 
         }
     }
