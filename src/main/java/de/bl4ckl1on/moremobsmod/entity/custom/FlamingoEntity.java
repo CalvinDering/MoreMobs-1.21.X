@@ -1,6 +1,7 @@
 package de.bl4ckl1on.moremobsmod.entity.custom;
 
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
+import de.bl4ckl1on.moremobsmod.entity.ai.StayWithGroupGoal;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
@@ -19,8 +20,10 @@ import javax.annotation.Nullable;
 public class FlamingoEntity extends Animal {
 
     public final AnimationState idleAnimationState = new AnimationState();
+    public final AnimationState standOnOneLegAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     private final int idleAnimationInTicks = 20 * 4;
+    private int standCooldown = 0;
 
     public FlamingoEntity(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
@@ -32,8 +35,9 @@ public class FlamingoEntity extends Animal {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.0f));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0f, Ingredient.of(Items.COD, Items.SALMON), false));
-        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0f));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0f, 240));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(4, new StayWithGroupGoal<FlamingoEntity>(this, FlamingoEntity.class, 1.0f, 6.0f));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -61,6 +65,25 @@ public class FlamingoEntity extends Animal {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        if(this.standOnOneLegAnimationState.isStarted()) {
+            if(this.getDeltaMovement().horizontalDistanceSqr() > 0.0001) {
+                this.standOnOneLegAnimationState.stop();
+                this.standCooldown = 100;
+                return;
+            }
+
+            if(--this.standCooldown <= 0) {
+                this.standOnOneLegAnimationState.stop();
+                this.standCooldown = 200 + this.random.nextInt(200);
+            }
+            return;
+        }
+
+        if(this.standCooldown-- <= 0 && this.random.nextInt(100) == 0) {
+            this.standOnOneLegAnimationState.start(this.tickCount);
+            this.standCooldown = 200 + this.random.nextInt(200);
+        }
     }
 
     @Override
@@ -71,4 +94,5 @@ public class FlamingoEntity extends Animal {
             this.setupAnimationStates();
         }
     }
+
 }

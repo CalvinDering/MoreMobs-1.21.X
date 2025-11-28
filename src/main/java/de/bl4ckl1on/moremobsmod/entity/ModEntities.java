@@ -23,13 +23,13 @@ public class ModEntities {
                     EntityType.Builder.of(MonkeyEntity::new, MobCategory.CREATURE).sized(0.9f, 1.5f).build("monkey"));
     public static final Supplier<EntityType<FlamingoEntity>> FLAMINGO =
             ENTITY_TYPES.register("flamingo", () ->
-                    EntityType.Builder.of(FlamingoEntity::new, MobCategory.CREATURE).sized(0.6f, 1.5f).build("flamingo"));
+                    EntityType.Builder.of(FlamingoEntity::new, MobCategory.CREATURE).sized(0.6f, 1.2f).build("flamingo"));
     public static final Supplier<EntityType<KangarooEntity>> KANGAROO =
             ENTITY_TYPES.register("kangaroo", () ->
                     EntityType.Builder.of(KangarooEntity::new, MobCategory.CREATURE).sized(1f, 1.8f).build("kangaroo"));
     public static final Supplier<EntityType<GiraffeEntity>> GIRAFFE =
             ENTITY_TYPES.register("giraffe", () ->
-                    EntityType.Builder.of(GiraffeEntity::new, MobCategory.CREATURE).sized(1.2f, 5f).build("giraffe"));
+                    EntityType.Builder.of(GiraffeEntity::new, MobCategory.CREATURE).sized(1.2f, 4f).build("giraffe"));
     public static final Supplier<EntityType<PenguinEntity>> PENGUIN =
             ENTITY_TYPES.register("penguin", () ->
                     EntityType.Builder.of(PenguinEntity::new, MobCategory.CREATURE).sized(0.5f, 1f).build("penguin"));
