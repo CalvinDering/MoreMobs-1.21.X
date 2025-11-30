@@ -1,7 +1,10 @@
 package de.bl4ckl1on.moremobsmod.entity.custom;
 
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
+import de.bl4ckl1on.moremobsmod.sound.ModSounds;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
@@ -71,5 +74,17 @@ public class KangarooEntity extends Animal {
         if(this.level().isClientSide()) {
             this.setupAnimationStates();
         }
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.KANGAROO_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.KANGAROO_DEATH.get();
     }
 }

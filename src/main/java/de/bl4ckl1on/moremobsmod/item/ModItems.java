@@ -17,6 +17,8 @@ public class ModItems {
 
     public static final DeferredItem<Item> BANANA = ITEMS.register("banana",
             () -> new ItemNameBlockItem(ModBlocks.BANANA_BLOCK.get(), new Item.Properties()));
+    public static final DeferredItem<Item> PINK_FEATHER = ITEMS.register("pink_feather",
+            () -> new Item(new Item.Properties().stacksTo(32)));
 
     public static final DeferredItem<Item> CROCODILE_SPAWN_EGG = ITEMS.register("crocodile_spawn_egg",
             () -> new DeferredSpawnEggItem(ModEntities.CROCODILE, 0x484a30, 0x757d55, new Item.Properties()));

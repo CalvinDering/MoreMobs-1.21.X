@@ -17,5 +17,78 @@
     "sounds": [
       "moremobsmod:monkey_death"
     ]
+  },
+
+  "crocodile_hurt": {
+    "subtitle": "sounds.moremobsmod.crocodile_hurt",
+    "sounds": [
+      "moremobsmod:crocodile_hurt"
+    ]
+  },
+  "crocodile_death": {
+    "subtitle": "sounds.moremobsmod.crocodile_death",
+    "sounds": [
+      "moremobsmod:crocodile_death"
+    ]
+  },
+
+  "flamingo_ambient": {
+    "subtitle": "sounds.moremobsmod.flamingo_ambient",
+    "sounds": [
+      "moremobsmod:flamingo_ambient1",
+      "moremobsmod:flamingo_ambient2"
+    ]
+  },
+  "flamingo_hurt": {
+    "subtitle": "sounds.moremobsmod.flamingo_hurt",
+    "sounds": [
+      "moremobsmod:flamingo_hurt1",
+      "moremobsmod:flamingo_hurt2"
+    ]
+  },
+  "flamingo_death": {
+    "subtitle": "sounds.moremobsmod.flamingo_death",
+    "sounds": [
+      "moremobsmod:flamingo_death"
+    ]
+  },
+
+  "giraffe_hurt": {
+    "subtitle": "sounds.moremobsmod.giraffe_hurt",
+    "sounds": [
+      "moremobsmod:giraffe_hurt"
+    ]
+  },
+  "giraffe_death": {
+    "subtitle": "sounds.moremobsmod.giraffe_death",
+    "sounds": [
+      "moremobsmod:giraffe_death"
+    ]
+  },
+
+  "kangaroo_hurt": {
+    "subtitle": "sounds.moremobsmod.kangaroo_hurt",
+    "sounds": [
+      "moremobsmod:kangaroo_hurt"
+    ]
+  },
+  "kangaroo_death": {
+    "subtitle": "sounds.moremobsmod.kangaroo_death",
+    "sounds": [
+      "moremobsmod:kangaroo_death"
+    ]
+  },
+
+  "penguin_hurt": {
+    "subtitle": "sounds.moremobsmod.penguin_hurt",
+    "sounds": [
+      "moremobsmod:penguin_hurt"
+    ]
+  },
+  "penguin_death": {
+    "subtitle": "sounds.moremobsmod.penguin_death",
+    "sounds": [
+      "moremobsmod:penguin_death"
+    ]
   }
 }

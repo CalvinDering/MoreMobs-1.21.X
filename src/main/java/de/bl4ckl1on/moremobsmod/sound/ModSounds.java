@@ -18,6 +18,22 @@ public class ModSounds {
     public static final Supplier<SoundEvent> MONKEY_DEATH = registerSoundEvent("monkey_death");
     public static final Supplier<SoundEvent> MONKEY_HURT = registerSoundEvent("monkey_hurt");
 
+    public static final Supplier<SoundEvent> CROCODILE_DEATH = registerSoundEvent("crocodile_death");
+    public static final Supplier<SoundEvent> CROCODILE_HURT = registerSoundEvent("crocodile_hurt");
+
+    public static final Supplier<SoundEvent> FLAMINGO_AMBIENT = registerSoundEvent("flamingo_ambient");
+    public static final Supplier<SoundEvent> FLAMINGO_DEATH = registerSoundEvent("flamingo_death");
+    public static final Supplier<SoundEvent> FLAMINGO_HURT = registerSoundEvent("flamingo_hurt");
+
+    public static final Supplier<SoundEvent> GIRAFFE_DEATH = registerSoundEvent("giraffe_death");
+    public static final Supplier<SoundEvent> GIRAFFE_HURT = registerSoundEvent("giraffe_hurt");
+
+    public static final Supplier<SoundEvent> KANGAROO_DEATH = registerSoundEvent("kangaroo_death");
+    public static final Supplier<SoundEvent> KANGAROO_HURT = registerSoundEvent("kangaroo_hurt");
+
+    public static final Supplier<SoundEvent> PENGUIN_DEATH = registerSoundEvent("penguin_death");
+    public static final Supplier<SoundEvent> PENGUIN_HURT = registerSoundEvent("penguin_hurt");
+
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MoreMobsMod.MOD_ID, name);
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));

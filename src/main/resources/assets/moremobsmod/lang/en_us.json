@@ -1,5 +1,6 @@
 {
   "item.moremobsmod.banana": "Banana",
+  "item.moremobsmod.pink_feather": "Pink Feather",
   "item.moremobsmod.crocodile_spawn_egg": "Crocodile Spawn Egg",
   "item.moremobsmod.monkey_spawn_egg": "Monkey Spawn Egg",
   "item.moremobsmod.flamingo_spawn_egg": "Flamingo Spawn Egg",
@@ -10,9 +11,9 @@
 
   "entity.moremobsmod.crocodile": "Crocodile",
   "entity.moremobsmod.monkey": "Monkey",
-  "entity.moremobsmod.flamingo": "Monkey",
-  "entity.moremobsmod.giraffe": "Monkey",
-  "entity.moremobsmod.kangaroo": "Monkey",
-  "entity.moremobsmod.penguin": "Monkey",
-  "entity.moremobsmod.ender_serpent": "Monkey"
+  "entity.moremobsmod.flamingo": "Flamingo",
+  "entity.moremobsmod.giraffe": "Giraffe",
+  "entity.moremobsmod.kangaroo": "Kangaroo",
+  "entity.moremobsmod.penguin": "Penguin",
+  "entity.moremobsmod.ender_serpent": "Ender Serpent"
 }

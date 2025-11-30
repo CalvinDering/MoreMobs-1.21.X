@@ -2,7 +2,10 @@ package de.bl4ckl1on.moremobsmod.entity.custom;
 
 import de.bl4ckl1on.moremobsmod.entity.ModEntities;
 import de.bl4ckl1on.moremobsmod.entity.ai.StayWithGroupGoal;
+import de.bl4ckl1on.moremobsmod.sound.ModSounds;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
@@ -37,7 +40,7 @@ public class FlamingoEntity extends Animal {
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.0f, Ingredient.of(Items.COD, Items.SALMON), false));
         this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0f, 240));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(4, new StayWithGroupGoal<FlamingoEntity>(this, FlamingoEntity.class, 1.0f, 6.0f));
+        this.goalSelector.addGoal(4, new StayWithGroupGoal(this, FlamingoEntity.class, 1.0f, 6.0f));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -93,6 +96,24 @@ public class FlamingoEntity extends Animal {
         if(this.level().isClientSide()) {
             this.setupAnimationStates();
         }
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.FLAMINGO_AMBIENT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.FLAMINGO_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.FLAMINGO_DEATH.get();
     }
 
 }

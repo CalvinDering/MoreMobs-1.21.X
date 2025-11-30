@@ -1,5 +1,8 @@
 package de.bl4ckl1on.moremobsmod.entity.custom;
 
+import de.bl4ckl1on.moremobsmod.sound.ModSounds;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -10,6 +13,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
 
 public class CrocodileEntity extends Monster {
 
@@ -58,5 +63,17 @@ public class CrocodileEntity extends Monster {
         if(this.level().isClientSide()) {
             this.setupAnimationStates();
         }
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return ModSounds.CROCODILE_HURT.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ModSounds.CROCODILE_DEATH.get();
     }
 }
