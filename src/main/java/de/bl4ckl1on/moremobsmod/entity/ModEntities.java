@@ -32,7 +32,7 @@ public class ModEntities {
                     EntityType.Builder.of(GiraffeEntity::new, MobCategory.CREATURE).sized(1.2f, 4f).build("giraffe"));
     public static final Supplier<EntityType<PenguinEntity>> PENGUIN =
             ENTITY_TYPES.register("penguin", () ->
-                    EntityType.Builder.of(PenguinEntity::new, MobCategory.CREATURE).sized(0.5f, 1f).build("penguin"));
+                    EntityType.Builder.of(PenguinEntity::new, MobCategory.CREATURE).sized(0.5f, 1.2f).build("penguin"));
     public static final Supplier<EntityType<EnderSerpentEntity>> ENDER_SERPENT =
             ENTITY_TYPES.register("ender_serpent", () ->
                     EntityType.Builder.of(EnderSerpentEntity::new, MobCategory.CREATURE).sized(1.5f, 0.7f).build("ender_serpent"));

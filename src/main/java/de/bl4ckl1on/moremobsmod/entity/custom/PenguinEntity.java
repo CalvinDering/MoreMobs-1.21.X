@@ -33,17 +33,18 @@ public class PenguinEntity extends Animal {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new BreedGoal(this, 1.0f));
+        this.goalSelector.addGoal(1, new BreedGoal(this, 1.2f));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.2f, Ingredient.of(Items.SALMON), false));
-        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 0.8f));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Player.class, 4.0f, 1.0, 1.2));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Fox.class, 6.0f, 1.0, 1.3));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1f));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1f));
+        this.goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Player.class, 4.0f, 1.2, 1.5));
+        this.goalSelector.addGoal(5, new AvoidEntityGoal<>(this, Fox.class, 6.0f, 1.2, 1.5));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Animal.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 8.0D)
+                .add(Attributes.MAX_HEALTH, 5.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.2D)
                 .add(Attributes.FOLLOW_RANGE, 24D);
     }
