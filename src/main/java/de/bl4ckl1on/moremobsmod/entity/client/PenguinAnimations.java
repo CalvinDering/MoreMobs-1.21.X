@@ -10,6 +10,15 @@ public class PenguinAnimations {
 
             .build();
 
+    public static final AnimationDefinition ANIM_PENGUIN_SWIM = AnimationDefinition.Builder.withLength(0.0F).looping()
+            .addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                    new Keyframe(0.0F, KeyframeAnimations.degreeVec(80.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
+            ))
+            .addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+                    new Keyframe(0.0F, KeyframeAnimations.degreeVec(-60.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
+            ))
+            .build();
+
     public static final AnimationDefinition ANIM_PENGUIN_WALK = AnimationDefinition.Builder.withLength(0.5F).looping()
             .addAnimation("body", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                     new Keyframe(0.0F, KeyframeAnimations.degreeVec(10.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),

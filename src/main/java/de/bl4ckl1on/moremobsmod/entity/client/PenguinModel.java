@@ -90,8 +90,14 @@ public class PenguinModel<T extends PenguinEntity> extends HierarchicalModel<T> 
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.applyHeadRotation(netHeadYaw, headPitch);
 
-        this.animateWalk(PenguinAnimations.ANIM_PENGUIN_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.animate(entity.idleAnimationState, PenguinAnimations.ANIM_PENGUIN_IDLE, ageInTicks, 1f);
+        boolean swimming = entity.isInWater() && !entity.onGround();
+
+        if(swimming) {
+            this.animate(entity.swimAnimationState, PenguinAnimations.ANIM_PENGUIN_SWIM, ageInTicks, 1f);
+        } else {
+            this.animateWalk(PenguinAnimations.ANIM_PENGUIN_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+            this.animate(entity.idleAnimationState, PenguinAnimations.ANIM_PENGUIN_IDLE, ageInTicks, 1f);
+        }
     }
 
     private void applyHeadRotation(float headYaw, float headPitch) {
